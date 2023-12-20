@@ -27,7 +27,7 @@ const todoList = () => {
     for (const item of list) {
       const status = item.completed ? "[x]" : "[ ]";
       const title = item.title;
-      const dueDate = item.dueDate === new Date().toISOString().split("T")[0] ? "" : ` ${item.dueDate}`;
+      const dueDate = item.dueDate === today ? "" : ` ${item.dueDate}`;
       result += `${status} ${title}${dueDate}\n`;
     }
     return result;
@@ -44,8 +44,9 @@ const todoList = () => {
   };
 };
 
-
-//actual code
+// ####################################### #
+// DO NOT CHANGE ANYTHING BELOW THIS LINE. #
+// ####################################### #
 
 const todos = todoList();
 
