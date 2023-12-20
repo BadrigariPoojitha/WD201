@@ -52,11 +52,7 @@ const todoList = () => {
 };
 
 module.exports = todoList;
-
-// ####################################### #
-// DO NOT CHANGE ANYTHING BELOW THIS LINE. #
-// ####################################### #
-
+//actual code
 // const todos = todoList();
 
 // const formattedDate = (d) => {
