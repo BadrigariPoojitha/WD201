@@ -1,25 +1,11 @@
 {
-  "name": "todo-cli",
-  "version": "1.0.0",
-  "description": "",
-  "main": "todo.js",
+  "dependencies": {
+    "jest": "^29.0.2",
+    "minimist": "^1.2.6",
+    "pg": "^8.8.0",
+    "sequelize": "^6.23.0"
+  },
   "scripts": {
-    "test": "jest",
-    "prepare": "cd .. && husky install todo-cli/.husky"
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint",
-      "prettier --write ."
-    ]
-  },
-  "author": "Mark",
-  "license": "ISC",
-  "devDependencies": {
-    "eslint": "^8.56.0",
-    "husky": "^8.0.3",
-    "jest": "^29.7.0",
-    "lint-staged": "^15.2.0",
-    "prettier": "^3.1.1"
+    "test": "jest --detectOpenHandles"
   }
 }
