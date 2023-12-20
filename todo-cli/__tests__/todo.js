@@ -14,23 +14,29 @@ describe("Todo list getting Tested", () => {
   });
 
   test("Adding new todo in the list", () => {
-    // expect(all.length).toBe(0);
-    let length = all.length;
+  let length = all.length;
 
-    add({
-      title: "node js process of learning",
-      completed: false,
-      dueDate: new Date().toLocaleDateString("en-CA"),
-    });
-
-    expect(all.length).toBe(length + 1);
+  add({
+    title: "node js process of learning",
+    completed: false,
+    dueDate: new Date().toLocaleDateString("en-CA"),
   });
+
+  // Updated the expectation to check if the length increased by 1
+  expect(all.length).toBe(length + 1);
+});
+
 
   test("Marking todo as completed", () => {
-    expect(all[0].completed).toBe(false);
-    markAsComplete(0);
-    expect(all[0].completed).toBe(true);
-  });
+  // Corrected the expectation to check if the todo is initially marked as false
+  expect(all[all.length - 1].completed).toBe(false);
+
+  markAsComplete(all.length - 1);
+
+  // Updated the expectation to check if the todo is marked as true after completion
+  expect(all[all.length - 1].completed).toBe(true);
+});
+
 
   test("retrieving all todos that are overdue", () => {
     let listOfTodos = overdue();
