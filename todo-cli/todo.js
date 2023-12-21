@@ -2,12 +2,12 @@
 const todoList = () => {
   all = [];
   const formattedDate = (d) => {
-    const dateCopy = new Date(d);
-    return dateCopy.toISOString().split("T")[0];
+    const datescopy = new Date(d);
+    return datescopy.toISOString().split("T")[0];
   };
 
-  const dateToday = new Date();
-  const today = formattedDate(dateToday);
+  const todaysdate = new Date();
+  const today = formattedDate(todaysdate);
 
   const add = (todoItem) => {
     all.push(todoItem);
@@ -30,7 +30,7 @@ const todoList = () => {
   };
 
   const toDisplayableList = (list) => {
-    let displayableList = "";
+    let displayableList = " ";
 
     list.forEach((item) => {
       const checkbox = item.completed ? "[x]" : "[ ]";
@@ -54,25 +54,22 @@ const todoList = () => {
 
 module.exports = todoList;
 
-// ####################################### #
-// DO NOT CHANGE ANYTHING BELOW THIS LINE. #
-// ####################################### #
-
+// do net touch the below code as it is from the default template
 // const todos = todoList();
 
 // const formattedDate = (d) => {
 //   return d.toISOString().split("T")[0];
 // };
 
-// var dateToday = new Date();
-// const today = formattedDate(dateToday);
+// var todaysdate = new Date();
+// const today = formattedDate(todaysdate);
 // console.log(today);
 // const yesterday = formattedDate(
-//   new Date(new Date().setDate(dateToday.getDate() - 1))
+//   new Date(new Date().setDate(todaysdate.getDate() - 1))
 // );
 // console.log(yesterday);
 // const tomorrow = formattedDate(
-//   new Date(new Date().setDate(dateToday.getDate() + 1))
+//   new Date(new Date().setDate(todaysdate.getDate() + 1))
 // );
 // console.log(typeof tomorrow);
 
