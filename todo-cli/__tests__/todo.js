@@ -9,7 +9,7 @@ describe("TodoList Test Suite", () => {
   test("Should add new todo", () => {
     const itemcount = AllTodos.all.length;
     AllTodos.add({
-      title: "Test todo 2",
+      title: "Test todo 10",
       completed: false,
       dueDate: "2023-12-20",
     });
@@ -18,7 +18,7 @@ describe("TodoList Test Suite", () => {
 
   test("Should mark a todo as complete", () => {
     AllTodos.add({
-      title: "Test todo",
+      title: "Test todo 11",
       completed: false,
       dueDate: "2023-12-20",
     });
@@ -29,51 +29,51 @@ describe("TodoList Test Suite", () => {
   });
 
   test("Should retrieve overdue items", () => {
-    const dateToday = new Date();
+    const todaysDate = new Date();
     const formattedDate = (d) => d.toISOString().split("T")[0];
     const yesterday = formattedDate(
-      new Date(dateToday.setDate(dateToday.getDate() - 1)),
+      new Date(todaysDate.setDate(todaysDate.getDate() - 1)),
     );
 
-    const overDueitemcount = AllTodos.overdue().length;
+    const overdueitemscount = AllTodos.overdue().length;
     const overdueAdd = {
-      title: "Complete my assignment",
+      title: "Complete all pupilfirst assignments",
       dueDate: yesterday,
       completed: false,
     };
     AllTodos.add(overdueAdd);
-    expect(AllTodos.overdue().length).toEqual(overDueitemcount + 1);
+    expect(AllTodos.overdue().length).toEqual(overdueitemscount + 1);
   });
 
   test("Should retrieve due today items", () => {
-    const dateToday = new Date();
+    const todaysDate = new Date();
     const formattedDate = (d) => d.toISOString().split("T")[0];
-    const today = formattedDate(dateToday);
+    const today = formattedDate(todaysDate);
 
-    const DueTodayitemcount = AllTodos.dueToday().length;
+    const duetodayitemscount = AllTodos.dueToday().length;
     const todayAdd = {
-      title: "Complete this milestone",
+      title: "Complete this  4th module  milestone",
       dueDate: today,
       completed: false,
     };
     AllTodos.add(todayAdd);
-    expect(AllTodos.dueToday().length).toEqual(DueTodayitemcount + 1);
+    expect(AllTodos.dueToday().length).toEqual(duetodayitemscount + 1);
   });
 
   test("Should retrieve due later items", () => {
-    const dateToday = new Date();
+    const todaysDate = new Date();
     const formattedDate = (d) => d.toISOString().split("T")[0];
     const tomorrow = formattedDate(
-      new Date(dateToday.setDate(dateToday.getDate() + 1)),
+      new Date(todaysDate.setDate(todaysDate.getDate() + 1)),
     );
 
-    const DueLateritemcount = AllTodos.dueLater().length;
+    const duelateritemscount = AllTodos.dueLater().length;
     const laterAdd = {
-      title: "Prepare for sem exams",
+      title: "Preparing  for V sem exams",
       dueDate: tomorrow,
       completed: false,
     };
     AllTodos.add(laterAdd);
-    expect(AllTodos.dueLater().length).toEqual(DueLateritemcount + 1);
+    expect(AllTodos.dueLater().length).toEqual(duelateritemscount + 1);
   });
 });
