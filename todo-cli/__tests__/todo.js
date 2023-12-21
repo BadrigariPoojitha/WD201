@@ -5,7 +5,7 @@ beforeEach(() => {
   todos = todoList();
 });
 
-describe("TodoList Test Suite", () => {
+describe("TodoList Test Suite display", () => {
   test("Should add new todo", () => {
     const todoItemsCount = todos.all.length;
     todos.add({
@@ -16,7 +16,7 @@ describe("TodoList Test Suite", () => {
     expect(todos.all.length).toBe(todoItemsCount + 1);
   });
 
-  test("Should mark a todo as complete", () => {
+  test("Should mark a todo as complete now", () => {
     todos.add({
       title: "Test todo",
       completed: false,
@@ -28,7 +28,7 @@ describe("TodoList Test Suite", () => {
     expect(todos.all[0].completed).toBe(true);
   });
 
-  test("Should retrieve overdue items", () => {
+  test("Should retrieve overdue items now", () => {
     const dateToday = new Date();
     const formattedDate = (d) => d.toISOString().split("T")[0];
     const yesterday = formattedDate(
@@ -45,14 +45,14 @@ describe("TodoList Test Suite", () => {
     expect(todos.overdue().length).toEqual(overDueTodoItemsCount + 1);
   });
 
-  test("Should retrieve due today items", () => {
+  test("Should retrieve due today items now", () => {
     const dateToday = new Date();
     const formattedDate = (d) => d.toISOString().split("T")[0];
     const today = formattedDate(dateToday);
 
     const DueTodayTodoItemsCount = todos.dueToday().length;
     const todayAdd = {
-      title: "Complete this milestone",
+      title: "Complete this 5th milestone",
       dueDate: today,
       completed: false,
     };
@@ -60,7 +60,7 @@ describe("TodoList Test Suite", () => {
     expect(todos.dueToday().length).toEqual(DueTodayTodoItemsCount + 1);
   });
 
-  test("Should retrieve due later items", () => {
+  test("Should retrieve due later items now", () => {
     const dateToday = new Date();
     const formattedDate = (d) => d.toISOString().split("T")[0];
     const tomorrow = formattedDate(
