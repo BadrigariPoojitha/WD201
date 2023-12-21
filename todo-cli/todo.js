@@ -1,10 +1,8 @@
 const todoList = () => {
   const all = [];
 
-  const formattedDate = (d) => { //methods for formatting all testcases
-    const dateCopy = new Date(d);
-    return dateCopy.toISOString().split("T")[0];
-  };
+  const formattedDate = (d) => d.toISOString().split("T")[0];
+
 
   const dateToday = new Date();
   const today = formattedDate(dateToday);
@@ -18,16 +16,19 @@ const todoList = () => {
   };
 
   const overdue = () => {
-    return all.filter((item) => !item.completed && item.dueDate < today);
-  };
+  const today = formattedDate(new Date());
+  return all.filter((item) => !item.completed && item.dueDate < today);
+};
 
-  const dueToday = () => {
-    return all.filter((item) => item.dueDate === today);
-  };
+const dueToday = () => {
+  const today = formattedDate(new Date());
+  return all.filter((item) => item.dueDate === today);
+};
 
-  const dueLater = () => {
-    return all.filter((item) => !item.completed && item.dueDate > today);
-  };
+const dueLater = () => {
+  const today = formattedDate(new Date());
+  return all.filter((item) => !item.completed && item.dueDate > today);
+};
 
   const toDisplayableList = (list) => {
     let displayableList = "";
