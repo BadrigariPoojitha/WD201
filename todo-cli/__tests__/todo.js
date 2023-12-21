@@ -1,69 +1,79 @@
 const todoList = require("../todo");
+let AllTodos;
+
+beforeEach(() => {
+  AllTodos = todoList();
+});
 
 describe("TodoList Test Suite", () => {
-  let todos;
-
-  beforeEach(() => {
-    todos = todoList();
-  });
-
   test("Should add new todo", () => {
-    const initialTodoCount = todos.all.length;
-
-    todos.add({
+    const itemcount = AllTodos.all.length;
+    AllTodos.add({
       title: "Test todo 2",
       completed: false,
       dueDate: "2023-12-20",
     });
-
-    expect(todos.all.length).toBe(initialTodoCount + 1);
+    expect(AllTodos.all.length).toBe(itemcount + 1);
   });
 
   test("Should mark a todo as complete", () => {
-    todos.add({
+    AllTodos.add({
       title: "Test todo",
       completed: false,
       dueDate: "2023-12-20",
     });
 
-    expect(todos.all[0].completed).toBe(false);
-    todos.markAsComplete(0);
-    expect(todos.all[0].completed).toBe(true);
+    expect(AllTodos.all[0].completed).toBe(false);
+    AllTodos.markAsComplete(0);
+    expect(AllTodos.all[0].completed).toBe(true);
   });
 
   test("Should retrieve overdue items", () => {
-    const overdueItem = {
+    const dateToday = new Date();
+    const formattedDate = (d) => d.toISOString().split("T")[0];
+    const yesterday = formattedDate(
+      new Date(dateToday.setDate(dateToday.getDate() - 1)),
+    );
+
+    const overDueitemcount = AllTodos.overdue().length;
+    const overdueAdd = {
       title: "Complete my assignment",
-      dueDate: "2023-12-19",
+      dueDate: yesterday,
       completed: false,
     };
-
-    todos.add(overdueItem);
-
-    expect(todos.overdue().length).toBe(1);
+    AllTodos.add(overdueAdd);
+    expect(AllTodos.overdue().length).toEqual(overDueitemcount + 1);
   });
 
   test("Should retrieve due today items", () => {
-    const todayItem = {
-      title: "Complete this 5th milestone",
-      dueDate: "2023-12-20",
+    const dateToday = new Date();
+    const formattedDate = (d) => d.toISOString().split("T")[0];
+    const today = formattedDate(dateToday);
+
+    const DueTodayitemcount = AllTodos.dueToday().length;
+    const todayAdd = {
+      title: "Complete this milestone",
+      dueDate: today,
       completed: false,
     };
-
-    todos.add(todayItem);
-
-    expect(todos.dueToday().length).toBe(1);
+    AllTodos.add(todayAdd);
+    expect(AllTodos.dueToday().length).toEqual(DueTodayitemcount + 1);
   });
 
   test("Should retrieve due later items", () => {
-    const laterItem = {
+    const dateToday = new Date();
+    const formattedDate = (d) => d.toISOString().split("T")[0];
+    const tomorrow = formattedDate(
+      new Date(dateToday.setDate(dateToday.getDate() + 1)),
+    );
+
+    const DueLateritemcount = AllTodos.dueLater().length;
+    const laterAdd = {
       title: "Prepare for sem exams",
-      dueDate: "2023-12-21",
+      dueDate: tomorrow,
       completed: false,
     };
-
-    todos.add(laterItem);
-
-    expect(todos.dueLater().length).toBe(1);
+    AllTodos.add(laterAdd);
+    expect(AllTodos.dueLater().length).toEqual(DueLateritemcount + 1);
   });
 });
